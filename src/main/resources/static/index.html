@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function(){
+  $("#helloBtn").click(function(){
+    $.ajax({url: "http://localhost:9080/hello", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+});
+
+
+$(document).ready(function()
+{
+    $("#scoreBtn").click(function(){
+    var jsonData={
+            DSR: "-1000000000.00",
+            AECBLngth: "0",
+            EIDexpiry: "-2",
+            salary: "-1000000000.00",
+            emirate: "abu dhabi",
+            nationality: "India",
+            DBR: "-1000000000.00",
+            companyname: "MONAMITECH",
+            ebssh: "-1000000000.00",
+            Resident: "Y",
+            age: "12",
+            email: "Y",
+            product: "alho_personal_loan"
+            }
+    $.ajax({
+    type: 'POST',
+    contentType: "application/json; charset=utf-8",
+    // make sure you respect the same origin policy with this url:
+    // http://en.wikipedia.org/wiki/Same_origin_policy
+    url: 'http://localhost:9080/score',
+    data:JSON.stringify(jsonData),
+    success: function(msg){
+        $("#scoreResponse").html(msg);
+    }
+});
+    });
+});
+
+
+    </script>
+</head>
+<body>
+
+
+<div id="div2"><h2>Calculate Score Below</h2>
+    <button id="scoreBtn">Score</button>
+    <div id="scoreResponse"></div>
+</div>
+</body>
+</html>
